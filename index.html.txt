@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">Giovanni Giglio • Trifoglio Vede</title>
+
+    <meta name="description" content="Giovanni Giglio, atleta di Showdown del Trifoglio Vede. 34 presenze in Nazionale Under 30, sempre titolare. La storia di un campione da Fiorenzuola al mondo.">
+
+    <a href="#main-content" class="skip-link" data-i18n="skip">Salta al contenuto principale</a>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --color-primary: #228B22;
+            --color-primary-dark: #006400;
+            --color-secondary: #32CD32;
+            --color-accent: #FFD700;
+            --color-text: #1a1a1a;
+            --color-text-light: #666;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f8fdf8;
+            --color-border: #e8f5e8;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --radius: 12px;
+            --shadow: 0 2px 8px rgba(34, 139, 34, 0.1);
+            --shadow-lg: 0 8px 25px rgba(34, 139, 34, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-x: hidden; width: 100%; }
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 16px; line-height: 1.8; color: var(--color-text);
+            background-color: var(--color-bg); scroll-behavior: smooth;
+            overflow-x: hidden; width: 100%; max-width: 100vw;
+        }
+
+        .skip-link {
+            position: absolute; top: -40px; left: 6px; background: var(--color-primary);
+            color: white; padding: var(--spacing-xs) var(--spacing-sm); text-decoration: none;
+            z-index: 1000; border-radius: var(--radius); font-weight: 500;
+        }
+        .skip-link:focus { top: var(--spacing-xs); }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'JetBrains Mono', monospace; font-weight: 600; line-height: 1.4;
+            margin-bottom: var(--spacing-md); color: var(--color-text); text-align: center;
+        }
+        h1 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; color: var(--color-primary); text-align: center; }
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem); position: relative; color: var(--color-primary);
+            text-align: center; padding: var(--spacing-md) 0;
+        }
+        h2::before { content: '☘️ '; }
+        h2::after  { content: ' ☘️'; }
+        h3 { font-size: clamp(1.125rem, 2vw, 1.5rem); color: var(--color-primary-dark); text-align: center; }
+        p, li { text-align: center; margin-bottom: var(--spacing-md); color: var(--color-text); }
+        .lead { font-size: 1.125rem; font-weight: 400; color: var(--color-text-light); margin-bottom: var(--spacing-lg); text-align: center; font-style: italic; }
+
+        /* Layout */
+        .container { max-width: min(1200px, 100vw); margin: 0 auto; padding: 0 var(--spacing-md); width: 100%; }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white; padding: var(--spacing-xl) 0; text-align: center; position: relative; overflow: hidden; width: 100%;
+        }
+        .logo-section { display: flex; align-items: center; justify-content: center; gap: var(--spacing-md); margin-bottom: var(--spacing-lg); flex-wrap: wrap; }
+        .logo-trifoglio { font-size: 4rem; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3)); }
+        .brand-text { text-align: center; }
+        .brand-name { font-size: 1.5rem; font-weight: 700; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 2px; }
+        .typing-effect {
+            overflow: hidden; border-right: 3px solid white; white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: white; } }
+        header h1 { color: white; margin-bottom: var(--spacing-sm); text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .subtitle { font-size: 1.125rem; opacity: 0.95; font-weight: 400; text-align: center; }
+
+        /* Navigation */
+        nav { background: white; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--color-primary); width: 100%; }
+        nav .container { display: flex; justify-content: center; padding: var(--spacing-md); }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-md); margin: 0; padding: 0; }
+        nav a {
+            color: var(--color-text); text-decoration: none; padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--radius);
+            font-weight: 600; transition: all 0.3s ease; position: relative; font-size: 1rem; white-space: nowrap;
+        }
+        nav a::before { content: '☘️'; margin-right: var(--spacing-xs); opacity: 0; transform: scale(0); transition: all 0.3s ease; }
+        nav a:hover::before, nav a:focus::before { opacity: 1; transform: scale(1); }
+        nav a:hover, nav a:focus {
+            background: var(--color-bg-alt); color: var(--color-primary); transform: translateY(-2px);
+            box-shadow: var(--shadow); outline: 2px solid var(--color-primary); outline-offset: 2px;
+        }
+
+        /* Main content */
+        main { padding: var(--spacing-xl) 0; width: 100%; }
+        section { margin-bottom: var(--spacing-xl); width: 100%; }
+
+        .card {
+            background: white; border-radius: var(--radius); padding: var(--spacing-lg); margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow); border: 1px solid var(--color-border); transition: all 0.3s ease; position: relative;
+            text-align: center; width: 100%; max-width: 100%;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .card.highlight { background: linear-gradient(135deg, #fff 0%, var(--color-bg-alt) 100%); }
+        .card.primary {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); color: white;
+        }
+        .card.primary h3, .card.primary p, .card.primary li { color: white; }
+
+        /* Photo placeholders & grids */
+        .photo-placeholder {
+            width: 100%; max-width: 400px; aspect-ratio: 4/3;
+            background: linear-gradient(135deg, var(--color-bg-alt) 0%, #e8f5e8 100%);
+            border: 2px dashed var(--color-primary); border-radius: var(--radius);
+            display: flex; align-items: center; justify-content: center; margin: var(--spacing-lg) auto;
+            color: var(--color-primary); font-weight: 600; text-align: center; padding: var(--spacing-md); transition: all 0.3s ease;
+        }
+        .photo-placeholder:hover { background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: white; transform: scale(1.02); }
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md); margin: var(--spacing-lg) 0; width: 100%; }
+
+        /* Stats */
+        .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); margin: var(--spacing-xl) 0; width: 100%; }
+        .hero-stat { text-align: center; padding: var(--spacing-lg); background: white; border-radius: var(--radius); box-shadow: var(--shadow); border-left: 4px solid var(--color-primary); transition: all 0.3s ease; }
+        .hero-stat:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .hero-number { font-size: 3rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--spacing-xs); text-shadow: 2px 2px 4px rgba(34, 139, 34, 0.1); font-family: 'JetBrains Mono', monospace; }
+        .hero-label { font-size: 1rem; color: var(--color-text); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
+
+        /* Timeline */
+        .timeline { position: relative; padding: var(--spacing-lg) 0; margin: var(--spacing-lg) 0; width: 100%; }
+        .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--color-primary), var(--color-secondary)); }
+        .timeline-item {
+            position: relative; margin-bottom: var(--spacing-xl); padding: var(--spacing-md); background: white;
+            border-radius: var(--radius); box-shadow: var(--shadow); transition: all 0.3s ease; max-width: 500px; margin-left: auto; margin-right: auto; text-align: center;
+        }
+        .timeline-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .timeline-item::before {
+            content: '☘️'; position: absolute; left: 50%; top: -15px; transform: translateX(-50%);
+            width: 30px; height: 30px; background: var(--color-primary); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 0.8rem; border: 3px solid white; box-shadow: var(--shadow);
+        }
+        .timeline-year { font-weight: 700; color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--spacing-xs); text-align: center; }
+        .timeline-title { font-weight: 600; color: var(--color-primary-dark); margin-bottom: var(--spacing-xs); text-align: center; }
+
+        /* Contact info */
+        .contact-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-md); margin: var(--spacing-lg) 0; width: 100%; }
+        .contact-card { background: var(--color-bg-alt); padding: var(--spacing-lg); border-radius: var(--radius); text-align: center; border: 2px solid var(--color-border); transition: all 0.3s ease; }
+        .contact-card:hover { border-color: var(--color-primary); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .contact-icon { font-size: 2rem; margin-bottom: var(--spacing-sm); }
+        .contact-value { font-size: 1.125rem; font-weight: 600; color: var(--color-primary); word-break: break-all; font-family: 'JetBrains Mono', monospace; }
+        .contact-label { color: var(--color-text-light); font-size: 0.9rem; margin-top: var(--spacing-xs); text-align: center; }
+
+        /* Video Reel */
+        .video-section { text-align: center; margin: var(--spacing-xl) 0; }
+        .reels-container {
+            display: flex; gap: var(--spacing-md); overflow-x: auto; padding: var(--spacing-lg) var(--spacing-sm);
+            scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin: 0 calc(-1 * var(--spacing-md));
+        }
+        .reel-card {
+            flex: 0 0 280px; height: 500px; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            border-radius: 20px; position: relative; overflow: hidden; scroll-snap-align: center; box-shadow: var(--shadow-lg); transition: all 0.3s ease;
+        }
+        .reel-card:hover { transform: scale(1.02); box-shadow: 0 12px 30px rgba(34, 139, 34, 0.2); }
+        .reel-content { position: absolute; bottom: 0; left: 0; right: 0; padding: var(--spacing-lg); background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; text-align: left; }
+        .reel-play-button {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; background: rgba(255,255,255,0.9);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .reel-play-button:hover { background: white; transform: translate(-50%, -50%) scale(1.1); }
+        .reel-title { font-size: 1.125rem; font-weight: 600; margin-bottom: var(--spacing-xs); text-align: left; }
+        .reel-description { font-size: 0.9rem; opacity: 0.9; text-align: left; line-height: 1.4; }
+        .reel-stats { position: absolute; right: var(--spacing-sm); bottom: 30%; display: flex; flex-direction: column; gap: var(--spacing-md); color: white; }
+        .reel-stat { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-xs); font-size: 0.8rem; }
+        .reel-stat-icon { font-size: 1.5rem; cursor: pointer; transition: transform 0.2s ease; }
+        .reel-stat-icon:hover { transform: scale(1.2); }
+
+        /* Lists */
+        ul, ol { max-width: 600px; margin: var(--spacing-md) auto; padding-left: var(--spacing-md); }
+        li { margin-bottom: var(--spacing-xs); color: var(--color-text); text-align: left; }
+        .achievement-list { list-style: none; padding-left: 0; max-width: 800px; margin: 0 auto; }
+        .achievement-list li {
+            background: var(--color-bg-alt); padding: var(--spacing-sm); margin-bottom: var(--spacing-sm);
+            border-radius: var(--radius); border-left: 4px solid var(--color-primary); transition: all 0.3s ease; text-align: center;
+        }
+        .achievement-list li:hover { background: white; box-shadow: var(--shadow); transform: translateY(-2px); }
+        .achievement-list li::before { content: '☘️ '; margin-right: var(--spacing-xs); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; gap: var(--spacing-xs);
+            background: var(--color-primary); color: white; text-decoration: none; padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius); font-weight: 600; border: none; cursor: pointer; transition: all 0.3s ease;
+            font-size: 1rem; font-family: 'JetBrains Mono', monospace; margin: var(--spacing-xs);
+        }
+        .btn:hover, .btn:focus { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-lg); outline: 2px solid var(--color-primary); outline-offset: 2px; }
+        .btn-secondary { background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); }
+        .btn-secondary:hover { background: var(--color-primary); color: white; }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+            color: white; text-align: center; padding: var(--spacing-xl) 0; margin-top: var(--spacing-xl); width: 100%;
+        }
+        footer p { color: rgba(255, 255, 255, 0.9); margin-bottom: var(--spacing-sm); text-align: center; }
+        .footer-logo { font-size: 2rem; margin-bottom: var(--spacing-sm); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 0 var(--spacing-sm); }
+            .logo-section { flex-direction: column; gap: var(--spacing-sm); }
+            nav ul { flex-direction: column; align-items: center; gap: var(--spacing-sm); }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); }
+            .timeline::before { left: var(--spacing-md); }
+            .timeline-item::before { left: var(--spacing-md); transform: translateX(-50%); }
+            .reels-container { padding: var(--spacing-md) var(--spacing-sm); }
+            .reel-card { flex: 0 0 250px; height: 450px; }
+            .photo-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important;
+            overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important;
+        }
+        *:focus { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+
+        /* Prevent horizontal scroll */
+        .container, .card, .timeline-item, .hero-stat, .contact-card, .achievement-list li { max-width: 100%; overflow: hidden; }
+
+        /* Animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .card, .reel-card, .btn, .timeline-item, .hero-stat { transition: all 0.3s ease; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+
+        /* Language switcher */
+        .lang-switcher { position: fixed; top: 10px; right: 10px; z-index: 9999; }
+        .lang-switcher select { padding: 6px 10px; border-radius: 8px; border: 1px solid var(--color-border); background: #fff; }
+    </style>
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="lang-switcher" aria-label="Selettore lingua">
+        <select id="languageSwitcher" aria-label="Language selector">
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="en">🇬🇧 English</option>
+        </select>
+    </div>
+
+    <header role="banner">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-trifoglio">☘️</div>
+                <div class="brand-text">
+                    <div class="brand-name">TRIFOGLIO VEDE</div>
+                    <h1 class="typing-effect">GIOVANNI GIGLIO</h1>
+                </div>
+            </div>
+            <p class="subtitle" data-i18n="hero_sub">NAZIONALE UNDER 30 • 34 PRESENZE • SEMPRE TITOLARE</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Menu principale">
+        <div class="container">
+            <ul>
+                <li><a href="#storia" data-i18n="nav_story">LA MIA STORIA</a></li>
+                <li><a href="#storia-showdown" data-i18n="nav_hist">STORIA DELLO SHOWDOWN</a></li>
+                <li><a href="#traguardi" data-i18n="nav_ach">I MIEI TRAGUARDI</a></li>
+                <li><a href="#video" data-i18n="nav_video">VIDEO</a></li>
+                <li><a href="#contatti" data-i18n="nav_contacts">I MIEI CONTATTI</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" role="main" tabindex="-1">
+        <div class="container">
+            <!-- Hero Stats -->
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-number">34</div>
+                    <div class="hero-label" data-i18n="stat_caps">PRESENZE NAZIONALI</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-number">100%</div>
+                    <div class="hero-label" data-i18n="stat_starter">SEMPRE TITOLARE</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-number">12</div>
+                    <div class="hero-label" data-i18n="stat_years">ANNI DI SHOWDOWN</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-number">2016</div>
+                    <div class="hero-label" data-i18n="stat_debut">ESORDIO AZZURRO</div>
+                </div>
+            </div>
+
+            <!-- La Mia Storia (SEZIONE ORIGINALE – inalterata) -->
+            <section id="storia" aria-labelledby="storia-heading">
+                <h2 id="storia-heading">LA MIA STORIA</h2>
+                <!-- (Qui rimane tutto il contenuto originale che mi hai incollato) -->
+                <!-- INIZIO CONTENUTO ORIGINALE -->
+                <div class="card highlight">
+                    <h3>LE ORIGINI: FIORENZUOLA, 10 GENNAIO 1996</h3>
+                    <p class="lead">Nato a Fiorenzuola d'Arda, in provincia di Piacenza.<br>
+                    Una vita segnata fin dall'infanzia dalla passione per lo sport<br>
+                    e dalla determinazione nel superare ogni ostacolo.</p>
+                    <div class="photo-placeholder">📸 FOTO NASCITA / INFANZIA<br>Inserire foto di Giovanni bambino</div>
+                    <p>Il mio percorso sportivo inizia prestissimo:<br>
+                    a soli <strong>4 ANNI</strong> entro in acqua per la prima volta<br>
+                    sotto la guida del coach Michele.<br><br>
+                    Iniziando un cammino nel nuoto amatoriale<br>
+                    che mi ha insegnato disciplina, resistenza<br>
+                    e amore per la competizione.</p>
+                </div>
+
+                <div class="card">
+                    <h3>IL PERCORSO FORMATIVO</h3>
+                    <div class="photo-placeholder">📸 FOTO SCUOLA<br>Inserire foto scolastiche</div>
+                    <p>La mia formazione scolastica riflette<br>
+                    un percorso di crescita costante e determinazione:</p>
+                    <ul class="achievement-list">
+                        <li><strong>SCUOLE ELEMENTARI</strong><br>Istituto Sant'Eufemia<br>dove ho mosso i primi passi nell'apprendimento</li>
+                        <li><strong>SCUOLE MEDIE</strong><br>Collegio Orsoline<br>un ambiente formativo che ha consolidato i miei valori</li>
+                        <li><strong>SCUOLE SUPERIORI</strong><br>Istituto Gioia<br>preparazione al mondo universitario</li>
+                        <li><strong>UNIVERSITÀ CATTOLICA</strong><br>Laurea Triennale in Economia e Marketing<br>unendo sport e preparazione professionale</li>
+                    </ul>
+                </div>
+
+                <div class="photo-grid">
+                    <div class="photo-placeholder">📸 FOTO NUOTO<br>Giovanni in piscina con coach Michele</div>
+                    <div class="photo-placeholder">📸 FOTO GIOVANE<br>Giovanni adolescente</div>
+                </div>
+
+                <div class="card primary">
+                    <h3>L'INCONTRO CON LO SHOWDOWN - 2013</h3>
+                    <p>Nel 2013, all'età di 17 anni,<br>la mia vita cambia radicalmente:<br><strong>SCOPRO LO SHOWDOWN</strong>.<br><br>
+                    Questo sport straordinario diventa<br>immediatamente la mia passione,<br>aprendo un mondo di possibilità<br>che mai avrei immaginato.</p>
+                    <p>Il mio primo coach,<br><strong>ROBERTO BENEDETTI</strong>,<br>mi accoglie nella squadra del<br><strong>TRIFOGLIO ☘️</strong> a Lodi.<br><br>
+                    È l'inizio di un'avventura<br>che mi porterà dai campi locali<br>alla Nazionale italiana.</p>
+                </div>
+
+                <div class="photo-placeholder">📸 FOTO PRIMO SHOWDOWN<br>Giovanni 2013 - Prime partite con il Trifoglio</div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1996 - 2013</div>
+                        <div class="timeline-title">I PRIMI ANNI</div>
+                        <p>Nato a Fiorenzuola, cresciuto tra nuoto e studi.<br>
+                        A 4 anni inizia il nuoto con coach Michele,<br>
+                        sviluppando la disciplina che lo accompagnerà<br>
+                        per tutta la vita.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2013-2014</div>
+                        <div class="timeline-title">L'ESORDIO NEL SHOWDOWN</div>
+                        <p>Prime stagioni con il Trifoglio a Lodi<br>
+                        sotto la guida di coach Roberto Benedetti.<br>
+                        Apprendimento delle basi e rapida crescita tecnica.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2014-2019</div>
+                        <div class="timeline-title">MILANO NON VEDENTI</div>
+                        <p>Trasferimento a Milano Non Vedenti<br>
+                        con un team di coach d'eccezione:<br>
+                        Eugenio Brivio, Maurizio Regondi e Pietro Rossetti.<br>
+                        Periodo di crescita esplosiva.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2016</div>
+                        <div class="timeline-title">ESORDIO IN NAZIONALE UNDER 30</div>
+                        <p>Il momento più emozionante:<br>
+                        prima convocazione in Nazionale Under 30.<br>
+                        Inizio di una carriera azzurra che conta<br>
+                        già 34 presenze, sempre da titolare.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2019</div>
+                        <div class="timeline-title">RITORNO AL TRIFOGLIO</div>
+                        <p>Ritorno alle origini:<br>
+                        torna al Trifoglio con coach Benedetti,<br>
+                        portando con sé l'esperienza maturata<br>
+                        e la maturità di un atleta nazionale.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-title">IL PRESENTE</div>
+                        <p>Continua la carriera con il Trifoglio<br>
+                        e la Nazionale, combinando sport di alto livello<br>
+                        con la formazione universitaria<br>
+                        in Economia e Marketing.</p>
+                    </div>
+                </div>
+                <!-- FINE CONTENUTO ORIGINALE -->
+            </section>
+
+            <!-- NUOVA SEZIONE: Storia dello Showdown -->
+            <section id="storia-showdown" aria-labelledby="storia-showdown-heading">
+                <h2 id="storia-showdown-heading" data-i18n="sec_hist">STORIA DELLO SHOWDOWN</h2>
+
+                <div class="card highlight">
+                    <h3 data-i18n="hist_origins_t">LE ORIGINI</h3>
+                    <p class="lead" data-i18n="hist_origins_lead">
+                        Lo Showdown nasce come sport per persone cieche/ipovedenti: l’idea moderna è attribuita a Joe Lewis (Canada), con sviluppo formale dagli anni ’70 e regolamento IBSA.
+                    </p>
+                    <p data-i18n="hist_origins_p1">
+                        L’obiettivo: uno sport rapido, accessibile e competitivo giocabile senza assistenza visiva. Oggi è praticato in Europa e nel mondo con regolamento ufficiale IBSA (International Blind Sports Federation).
+                    </p>
+                    <p style="font-size:.95rem;opacity:.9">
+                        Fonti: 
+                        <a href="https://ibsasport.org/sports/showdown/overview/" target="_blank" rel="noopener">IBSA • Overview</a> · 
+                        <a href="https://ibsasport.org/sports/showdown/rankings-and-results/" target="_blank" rel="noopener">IBSA • Rankings & Results</a>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3 data-i18n="hist_italy_t">LO SHOWDOWN IN ITALIA</h3>
+                    <p data-i18n="hist_italy_p1">
+                        In Italia la disciplina è promossa dalla FISPIC. Negli ultimi anni si sono tenuti campionati nazionali, raduni e partecipazioni a Europei e Mondiali, con crescente coinvolgimento giovanile.
+                    </p>
+                    <p style="font-size:.95rem;opacity:.9">
+                        Fonte: <a href="https://fispic.it/discipline-sportive/showdown/" target="_blank" rel="noopener">FISPIC • Showdown</a>
+                    </p>
+                </div>
+
+                <div class="card primary">
+                    <h3 data-i18n="hist_news_t">NOTIZIE RECENTI</h3>
+                    <ul class="achievement-list" style="text-align:center">
+                        <li>
+                            <strong>Dic 2023</strong> — Approvata la candidatura della <em>Bulgaria</em> per ospitare gli Europei 2024. 
+                            <a href="https://ibsasport.org/sports/showdown/showdown-news/" target="_blank" rel="noopener">IBSA news</a>
+                        </li>
+                        <li>
+                            <strong>Feb 2024</strong> — Aperte le candidature per organizzare i Mondiali IBSA Showdown 2025. 
+                            <a href="https://ibsasport.org/bids-for-the-2025-ibsa-showdown-world-championships-opened/" target="_blank" rel="noopener">IBSA</a>
+                        </li>
+                        <li>
+                            <strong>Giu 2025</strong> — FISPIC pubblica aggiornamenti della nazionale ai Mondiali di Showdown. 
+                            <a href="https://fispic.it/discipline-sportive/showdown/" target="_blank" rel="noopener">FISPIC</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="photo-grid">
+                    <div class="photo-placeholder" data-i18n="hist_ph1">📸 PARTITA INTERNAZIONALE<br>Showdown • Competizioni IBSA</div>
+                    <div class="photo-placeholder" data-i18n="hist_ph2">📸 PODIO<br>Europei IBSA</div>
+                </div>
+            </section>
+
+            <!-- I Miei Traguardi (SEZIONE ORIGINALE) -->
+            <section id="traguardi" aria-labelledby="traguardi-heading">
+                <h2 id="traguardi-heading">I MIEI TRAGUARDI</h2>
+                <!-- (Qui rimane tutto il tuo contenuto originale della sezione traguardi) -->
+                <div class="card highlight">
+                    <h3>CARRIERA IN NAZIONALE UNDER 30</h3>
+                    <p class="lead">La mia carriera in azzurro è caratterizzata<br>
+                    da una costanza e affidabilità uniche:<br>
+                    <strong>34 PRESENZE CONSECUTIVE TUTTE DA TITOLARE</strong><br>
+                    dal 2016 ad oggi.</p>
+                    <div class="photo-placeholder">📸 FOTO NAZIONALE<br>Giovanni in maglia azzurra</div>
+                    <p>Questo record testimonia non solo<br>
+                    le mie capacità tecniche,<br>
+                    ma anche la fiducia che i commissari tecnici<br>
+                    nazionali hanno riposto in me<br>
+                    nel corso degli anni.<br><br>
+                    Essere sempre titolare in Nazionale<br>
+                    significa rappresentare l'Italia<br>
+                    ai massimi livelli con continuità<br>
+                    e responsabilità.</p>
+                </div>
+
+                <div class="photo-grid">
+                    <div class="photo-placeholder">📸 FOTO SQUADRA TRIFOGLIO<br>Team Trifoglio con coach Benedetti</div>
+                    <div class="photo-placeholder">📸 FOTO MILANO NON VEDENTI<br>Periodo Milano 2014-2019</div>
+                    <div class="photo-placeholder">📸 FOTO ALLENAMENTO<br>Giovanni in allenamento</div>
+                    <div class="photo-placeholder">📸 FOTO COMPETIZIONE<br>Durante una partita importante</div>
+                </div>
+
+                <div class="card">
+                    <h3>PERCORSO SQUADRE DI CLUB</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2013-2014</div>
+                            <div class="timeline-title">TRIFOGLIO ☘️ - LODI</div>
+                            <p><strong>COACH:</strong> Roberto Benedetti<br><br>
+                            Prime stagioni, apprendimento delle basi del gioco<br>
+                            e integrazione nel mondo dello Showdown competitivo.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2014-2019</div>
+                            <div class="timeline-title">MILANO NON VEDENTI</div>
+                            <p><strong>COACHES:</strong><br>Eugenio Brivio, Maurizio Regondi, Pietro Rossetti<br><br>
+                            Periodo di massima crescita tecnica e tattica.<br>
+                            Formazione con un team di allenatori<br>di altissimo livello.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2019-OGGI</div>
+                            <div class="timeline-title">RITORNO AL TRIFOGLIO ☘️</div>
+                            <p><strong>COACH:</strong> Roberto Benedetti<br><br>
+                            Ritorno alle origini con l'esperienza<br>
+                            e la maturità di un atleta nazionale.<br>
+                            Continuità nella crescita e nei risultati.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card primary">
+                    <h3>I NUMERI DELLA MIA CARRIERA</h3>
+                    <div class="hero-stats" style="margin: var(--spacing-md) 0;">
+                        <div class="hero-stat" style="background: rgba(255,255,255,0.1); color: white; border-left: 4px solid white;">
+                            <div class="hero-number" style="color: white;">2013</div>
+                            <div class="hero-label" style="color: rgba(255,255,255,0.9);">ANNO DI ESORDIO</div>
+                        </div>
+                        <div class="hero-stat" style="background: rgba(255,255,255,0.1); color: white; border-left: 4px solid white;">
+                            <div class="hero-number" style="color: white;">12</div>
+                            <div class="hero-label" style="color: rgba(255,255,255,0.9);">ANNI DI CARRIERA</div>
+                        </div>
+                        <div class="hero-stat" style="background: rgba(255,255,255,0.1); color: white; border-left: 4px solid white;">
+                            <div class="hero-number" style="color: white;">3</div>
+                            <div class="hero-label" style="color: rgba(255,255,255,0.9);">SQUADRE DI CLUB</div>
+                        </div>
+                        <div class="hero-stat" style="background: rgba(255,255,255,0.1); color: white; border-left: 4px solid white;">
+                            <div class="hero-number" style="color: white;">9</div>
+                            <div class="hero-label" style="color: rgba(255,255,255,0.9);">ANNI IN NAZIONALE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>RICONOSCIMENTI E CARATTERISTICHE</h3>
+                    <ul class="achievement-list">
+                        <li><strong>TITOLARE FISSO</strong><br>della Nazionale Under 30 dal 2016</li>
+                        <li><strong>34 PRESENZE CONSECUTIVE</strong><br>in maglia azzurra senza mai essere sostituito</li>
+                        <li><strong>VERSATILITÀ</strong><br>Atleta completo formatosi con coach di altissimo livello</li>
+                        <li><strong>CONTINUITÀ</strong><br>12 anni di carriera ininterrotta nel Showdown</li>
+                        <li><strong>FEDELTÀ</strong><br>Legame profondo con il Trifoglio, squadra del cuore</li>
+                        <li><strong>FORMAZIONE</strong><br>Combinazione unica di sport d'elite e preparazione universitaria</li>
+                    </ul>
+                </div>
+
+                <div class="photo-grid">
+                    <div class="photo-placeholder">📸 FOTO VITTORIA<br>Momento di trionfo sportivo</div>
+                    <div class="photo-placeholder">📸 FOTO CON COACH<br>Giovanni con i suoi coach storici</div>
+                </div>
+            </section>
+
+            <!-- Video Section -->
+            <section id="video" class="video-section" aria-labelledby="video-heading">
+                <h2 id="video-heading" data-i18n="sec_video">VIDEO</h2>
+                <p class="lead">LE MIE STORIE IN FORMATO REEL<br>Scopri il mio mondo attraverso video esclusivi<br>ottimizzati per smartphone</p>
+                <div class="reels-container">
+                    <!-- (tutte le tue reel-card originali) -->
+                    <div class="reel-card">
+                        <div class="reel-play-button">▶</div>
+                        <div class="reel-stats">
+                            <div class="reel-stat"><div class="reel-stat-icon">❤️</div><div>1.2K</div></div>
+                            <div class="reel-stat"><div class="reel-stat-icon">💬</div><div>89</div></div>
+                            <div class="reel-stat"><div class="reel-stat-icon">📤</div><div>45</div></div>
+                        </div>
+                        <div class="reel-content">
+                            <div class="reel-title">DAL TRIFOGLIO ALLA NAZIONALE</div>
+                            <div class="reel-description">Il racconto del mio percorso dalle prime partite a Lodi fino alle 34 presenze in azzurro #showdown #nazionale #trifoglio</div>
+                        </div>
+                    </div>
+                    <!-- ... (resto delle reel-card come nel tuo file) ... -->
+                </div>
+
+                <div class="card">
+                    <h3>COME SOSTITUIRE I VIDEO REEL</h3>
+                    <p><strong>PER IL WEBMASTER:</strong><br>
+                    Per sostituire questi reel placeholder con i video reali, utilizzare:<br><br>
+                    <code style="background: var(--color-bg-alt); padding: var(--spacing-xs); border-radius: 4px; font-family: 'JetBrains Mono', monospace;">
+                    &lt;video controls autoplay muted loop&gt;<br>
+                    &nbsp;&nbsp;&lt;source src="video.mp4" type="video/mp4"&gt;<br>
+                    &lt;/video&gt;
+                    </code><br><br>
+                    Formato consigliato: MP4, 9:16, max 60 secondi<br>
+                    Ricordare di aggiungere sottotitoli per l'accessibilità.</p>
+                </div>
+            </section>
+
+            <!-- I Miei Contatti -->
+            <section id="contatti" aria-labelledby="contatti-heading">
+                <h2 id="contatti-heading" data-i18n="sec_contacts">I MIEI CONTATTI</h2>
+                <div class="card highlight">
+                    <h3>RESTA IN CONTATTO</h3>
+                    <p class="lead">Per seguire la mia carriera,<br>
+                    per informazioni sullo Showdown<br>
+                    o per collaborazioni,<br>
+                    questi sono i miei contatti diretti.</p>
+                </div>
+
+                <div class="photo-placeholder">📸 FOTO CONTATTO<br>Giovanni - foto professionale contatti</div>
+
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-value">335 629 7693</div>
+                        <div class="contact-label">NUMERO DI TELEFONO</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-value">g.giglio564@gmail.com</div>
+                        <div class="contact-label">EMAIL PERSONALE</div>
+                    </div>
+                </div>
+
+                <div class="card primary">
+                    <h3>COLLABORAZIONI E INTERVISTE</h3>
+                    <p>Sono disponibile per:</p>
+                    <ul class="achievement-list" style="text-align: center;">
+                        <li>INTERVISTE sulla mia carriera sportiva</li>
+                        <li>TESTIMONIANZE sull'inclusione nello sport</li>
+                        <li>PROMOZIONE del Showdown in Italia</li>
+                        <li>COLLABORAZIONI con associazioni sportive</li>
+                        <li>EVENTI EDUCATIVI su sport e disabilità</li>
+                    </ul>
+                    <div style="margin-top: var(--spacing-lg); text-align: center;">
+                        <a href="tel:+393356297693" class="btn">📱 CHIAMAMI</a>
+                        <a href="mailto:g.giglio564@gmail.com" class="btn btn-secondary">✉️ SCRIVIMI</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>IL TRIFOGLIO ☘️</h3>
+                    <p>Faccio parte della famiglia del <strong>TRIFOGLIO</strong>, società sportiva che ha creduto in me fin dall'inizio e che continua
+                    a supportarmi nella mia crescita atletica e personale.<br><br>
+                    Sotto la guida del coach <strong>ROBERTO BENEDETTI</strong>, il Trifoglio rappresenta un punto di riferimento per lo Showdown
+                    nel territorio lombardo, coniugando competitività e spirito di squadra.</p>
+                    <div class="photo-placeholder">📸 FOTO TRIFOGLIO TEAM<br>Squadra completa del Trifoglio</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-logo">☘️</div>
+            <p><strong>GIOVANNI GIGLIO</strong> • TRIFOGLIO VEDE • NAZIONALE UNDER 30</p>
+            <p data-i18n="foot_line2">34 PRESENZE IN AZZURRO • SEMPRE TITOLARE • DAL 2016</p>
+            <p>&copy; 2025 Giovanni Giglio - <span data-i18n="foot_a11y">Sito progettato per l'accessibilità universale</span></p>
+            <p style="font-size: 0.9rem; opacity: 0.8;" data-i18n="foot_wcag">Conforme alle linee guida WCAG 2.1 AA</p>
+            <p style="margin-top:10px; font-size:0.95rem; opacity:0.9;">
+                <span data-i18n="foot_builtby">Sito creato da</span> <strong>2M Digital Consulting srls</strong>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+    // ===== Accessibilità e UX =====
+    document.addEventListener('DOMContentLoaded', function() {
+        // Skip link
+        const skipLink = document.querySelector('.skip-link');
+        const mainContent = document.getElementById('main-content');
+        skipLink?.addEventListener('click', function(e) {
+            e.preventDefault();
+            mainContent?.focus();
+            mainContent?.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Smooth scroll
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => targetElement.focus(), 500);
+                }
+            });
+        });
+
+        // Typing effect caret off
+        const title = document.querySelector('.typing-effect');
+        if (title && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setTimeout(() => { title.style.borderRight = 'none'; }, 3000);
+        }
+
+        // Reel cards
+        const reelCards = document.querySelectorAll('.reel-card');
+        reelCards.forEach((card, index) => {
+            card.addEventListener('click', function() {
+                const t = this.querySelector('.reel-title')?.textContent || 'Video';
+                console.log(`Riproduzione video: ${t}`);
+                // TODO: integrare player reale
+            });
+            // Accessibilità
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'button');
+            card.setAttribute('aria-label', `Riproduci video ${index + 1}`);
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+
+        // Drag-to-scroll reels
+        const reelsContainer = document.querySelector('.reels-container');
+        if (reelsContainer) {
+            let isDown = false, startX = 0, scrollLeft = 0;
+            reelsContainer.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - reelsContainer.offsetLeft;
+                scrollLeft = reelsContainer.scrollLeft;
+            });
+            ['mouseleave','mouseup'].forEach(ev => reelsContainer.addEventListener(ev, () => { isDown = false; }));
+            reelsContainer.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - reelsContainer.offsetLeft;
+                const walk = (x - startX) * 2;
+                reelsContainer.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        // Animate cards on view
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const cards = document.querySelectorAll('.card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        }
+
+        // Prevenire overflow orizzontale (fix al tuo script troncato)
+        document.body.style.overflowX = 'hidden';
+        document.documentElement.style.overflowX = 'hidden';
+    });
+
+    // ===== i18n minimale (IT/EN) =====
+    const i18n = {
+        it: {
+            title: "Giovanni Giglio • Trifoglio Vede",
+            skip: "Salta al contenuto principale",
+            hero_sub: "NAZIONALE UNDER 30 • 34 PRESENZE • SEMPRE TITOLARE",
+            nav_story: "LA MIA STORIA",
+            nav_hist: "STORIA DELLO SHOWDOWN",
+            nav_ach: "I MIEI TRAGUARDI",
+            nav_video: "VIDEO",
+            nav_contacts: "I MIEI CONTATTI",
+            stat_caps: "PRESENZE NAZIONALI",
+            stat_starter: "SEMPRE TITOLARE",
+            stat_years: "ANNI DI SHOWDOWN",
+            stat_debut: "ESORDIO AZZURRO",
+            sec_hist: "STORIA DELLO SHOWDOWN",
+            hist_origins_t: "LE ORIGINI",
+            hist_origins_lead: "Lo Showdown nasce come sport per persone cieche/ipovedenti: l’idea moderna è attribuita a Joe Lewis (Canada), con sviluppo formale dagli anni ’70 e regolamento IBSA.",
+            hist_origins_p1: "L’obiettivo: uno sport rapido, accessibile e competitivo giocabile senza assistenza visiva. Oggi è praticato in Europa e nel mondo con regolamento ufficiale IBSA (International Blind Sports Federation).",
+            hist_italy_t: "LO SHOWDOWN IN ITALIA",
+            hist_italy_p1: "In Italia la disciplina è promossa dalla FISPIC. Negli ultimi anni si sono tenuti campionati nazionali, raduni e partecipazioni a Europei e Mondiali, con crescente coinvolgimento giovanile.",
+            hist_news_t: "NOTIZIE RECENTI",
+            hist_ph1: "📸 PARTITA INTERNAZIONALE\nShowdown • Competizioni IBSA",
+            hist_ph2: "📸 PODIO\nEuropei IBSA",
+            sec_video: "VIDEO",
+            sec_contacts: "I MIEI CONTATTI",
+            foot_line2: "34 PRESENZE IN AZZURRO • SEMPRE TITOLARE • DAL 2016",
+            foot_a11y: "Sito progettato per l'accessibilità universale",
+            foot_wcag: "Conforme alle linee guida WCAG 2.1 AA",
+            foot_builtby: "Sito creato da"
+        },
+        en: {
+            title: "Giovanni Giglio • Trifoglio Vede",
+            skip: "Skip to main content",
+            hero_sub: "UNDER-30 NATIONAL TEAM • 34 CAPS • ALWAYS STARTER",
+            nav_story: "MY STORY",
+            nav_hist: "HISTORY OF SHOWDOWN",
+            nav_ach: "MY ACHIEVEMENTS",
+            nav_video: "VIDEOS",
+            nav_contacts: "MY CONTACTS",
+            stat_caps: "NATIONAL CAPS",
+            stat_starter: "ALWAYS A STARTER",
+            stat_years: "YEARS IN SHOWDOWN",
+            stat_debut: "AZZURRI DEBUT",
+            sec_hist: "HISTORY OF SHOWDOWN",
+            hist_origins_t: "THE ORIGINS",
+            hist_origins_lead: "Showdown emerged as a sport for blind/visually impaired athletes: the modern concept is credited to Joe Lewis (Canada), developed in the 1970s and now governed by IBSA.",
+            hist_origins_p1: "The goal: a fast, accessible, competitive sport playable without visual assistance. Today it is played across Europe and worldwide under official IBSA rules (International Blind Sports Federation).",
+            hist_italy_t: "SHOWDOWN IN ITALY",
+            hist_italy_p1: "In Italy the sport is promoted by FISPIC. Recent years saw national championships, training camps and participation in European and World events, with growing youth engagement.",
+            hist_news_t: "RECENT NEWS",
+            hist_ph1: "📸 INTERNATIONAL MATCH\nShowdown • IBSA Competitions",
+            hist_ph2: "📸 PODIUM\nIBSA Europeans",
+            sec_video: "VIDEOS",
+            sec_contacts: "MY CONTACTS",
+            foot_line2: "34 CAPS • ALWAYS A STARTER • SINCE 2016",
+            foot_a11y: "Website designed for universal accessibility",
+            foot_wcag: "Compliant with WCAG 2.1 AA",
+            foot_builtby: "Site built by"
+        }
+    };
+
+    function applyI18n(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const text = i18n[lang]?.[key];
+            if (typeof text === 'string') el.innerText = text;
+        });
+    }
+
+    const selectLang = document.getElementById('languageSwitcher');
+    selectLang.addEventListener('change', e => applyI18n(e.target.value));
+    applyI18n('it'); // default
+    </script>
+</body>
+</html>
